@@ -1,4 +1,9 @@
 #!/bin/sh
 # RBAC Integration and Authn/Authz
 #
-# There is an `authconfig` crd but haven't been able to test if it gets an identifying attribute when activated
+# there should be at least 2 enabled authconfigs, local and an external
+AUTHCOUNT=$(kubectl get authconfigs -o json | jq -r '.items[] | select(.enabled==true).metadata.name' | gwc -l)
+
+if [ "$AUTHCOUNT" -lt 2 ]; then 
+    echo "There must be an additional auth mechanism besides local." 
+fi
