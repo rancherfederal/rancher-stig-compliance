@@ -1,5 +1,4 @@
 #!/bin/sh
-# Ensure there is one local admin on cluster
 # 
 # get all users with local principalIds
 LOCALUSER=$(kubectl get users -o json | jq -r '.items[] | select(.principalIds[] | test("local://*")).metadata.name')

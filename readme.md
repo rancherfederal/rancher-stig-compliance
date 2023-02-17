@@ -12,7 +12,7 @@ Vunerability Checks:
     - ./enablelogging.sh
 - V-252847 (Ensure local emergency admin account has not been removed and is the only Local account)
     - ./emergencyadmin.sh
-- V-252848 (Verify helm installation contains correct parameters for cert)
+- V-252848 (Verify rancher installation contains correct parameters for cert)
     - ./validcert.sh
 - V-252849 (Check rancher ingress and svc are only using port 443)
     - ./tlsportcheck.sh
