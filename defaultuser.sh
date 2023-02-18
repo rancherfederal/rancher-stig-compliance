@@ -2,11 +2,15 @@
 # Verify User-Base is the default assigned role
 #
 STDUSERFINDING=$(kubectl get globalroles user -o jsonpath='{.newUserDefault}')
+BASEUSERFINDING=$(kubectl get globalroles user-base -o jsonpath='{.newUserDefault}')
+ERRORMSG="User-Base should be the default user."
+
 if [ "$STDUSERFINDING" = "true" ]; then
-    echo "1 finding"
+    echo "$ERRORMSG"
+    exit 1
 fi
 
-BASEUSERFINDING=$(kubectl get globalroles user-base -o jsonpath='{.newUserDefault}')
 if [ "$BASEUSERFINDING" != "true" ]; then
-    echo "1 finding"
+    echo "$ERRORMSG"
+    exit 1
 fi

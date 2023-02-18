@@ -3,7 +3,7 @@
 # get all users with local principalIds
 LOCALUSER=$(kubectl get users -o json | jq -r '.items[] | select(.principalIds[] | test("local://*")).metadata.name')
 # count number of users matching criteria
-LOCALUSERCOUNT=$(echo "$LOCALUSER" | gwc -l)
+LOCALUSERCOUNT=$(echo "$LOCALUSER" | wc -l)
 
 if [ "$LOCALUSERCOUNT" != 1 ]; then
     echo "There should be one and only one local account."
